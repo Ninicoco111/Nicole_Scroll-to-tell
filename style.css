@@ -1,0 +1,224 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0b1f3a;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.intro {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #081729;
+}
+
+.intro-backdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(4, 13, 30, 0.90), rgba(4, 13, 30, 0.50)), url("images/sunrise-1.jpg") center 68% / cover;
+  filter: saturate(0.75);
+}
+
+.intro-content {
+  position: relative;
+  width: min(880px, 82vw);
+  margin: 0 9vw;
+  padding: 100px 0;
+}
+
+.intro-label {
+  margin-bottom: 25px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+}
+
+.intro-description {
+  max-width: 550px;
+  margin-top: 35px;
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  line-height: 1.65;
+}
+
+.intro-scroll {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 65px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(255,255,255,.75);
+  color: inherit;
+  font-size: .75rem;
+  letter-spacing: .2em;
+  text-decoration: none;
+}
+
+.photo-credit {
+  margin-top: 55px;
+  font-size: .8rem;
+  letter-spacing: .05em;
+}
+
+.scene {
+  position: relative;
+  min-height: 110vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.photo-layer {
+  position: absolute;
+  inset: -10%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.scene-1 .photo-layer { background-image: url("images/sunrise-1.jpg"); background-position: center 68%; }
+.scene-2 .photo-layer { background-image: url("images/sunrise-2.jpg"); background-position: center 70%; }
+.scene-3 .photo-layer { background-image: url("images/sunrise-3.jpg"); background-position: center 69%; }
+.scene-4 .photo-layer { background-image: url("images/sunrise-4.jpg"); background-position: center 68%; }
+.scene-5 .photo-layer { background-image: url("images/sunrise-5.jpg"); background-position: center 66%; }
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(3, 12, 28, 0.58) 0%, rgba(3, 12, 28, 0.16) 58%, rgba(3, 12, 28, 0.05) 100%);
+}
+
+.scene-5 .shade {
+  background: linear-gradient(90deg, rgba(8, 23, 38, 0.42), rgba(8, 23, 38, 0.05));
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: min(760px, 82vw);
+  margin-left: 9vw;
+  opacity: 0;
+  transform: translateY(55px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.scene.active .content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.eyebrow {
+  margin-bottom: 22px;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  font-weight: 700;
+}
+
+h1,
+h2 {
+  max-width: 850px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 0.95;
+  text-shadow: 0 3px 22px rgba(0, 0, 0, 0.24);
+}
+
+h1 {
+  font-size: clamp(4rem, 10vw, 9rem);
+}
+
+h2 {
+  font-size: clamp(3.2rem, 7vw, 7rem);
+}
+
+.caption {
+  max-width: 480px;
+  margin-top: 28px;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.scroll-hint {
+  margin-top: 60px;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+}
+
+.scroll-hint span {
+  display: inline-block;
+  margin-left: 10px;
+  animation: drift 1.5s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.progress {
+  position: fixed;
+  top: 50%;
+  right: 32px;
+  z-index: 20;
+  display: flex;
+  height: 180px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+}
+
+.progress-track {
+  position: relative;
+  width: 1px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: white;
+}
+
+@media (max-width: 700px) {
+  .scene {
+    min-height: 100vh;
+  }
+
+  .photo-layer {
+    inset: -6%;
+  }
+
+  .content {
+    width: 78vw;
+    margin-left: 8vw;
+  }
+
+  .progress {
+    right: 15px;
+    height: 130px;
+  }
+
+  .shade {
+    background: linear-gradient(90deg, rgba(3, 12, 28, 0.52), rgba(3, 12, 28, 0.08));
+  }
+}
